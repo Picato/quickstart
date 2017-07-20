@@ -3,5 +3,6 @@ log/
 mail/
 oauth/
 api-gateway/
+api-monitor/
 service@template/
 service-portal-manager/
