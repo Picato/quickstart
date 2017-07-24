@@ -7,3 +7,4 @@ api-monitor/
 auto-script/
 service@template/
 service-portal-manager/
+package-lock.json
