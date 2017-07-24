@@ -4,5 +4,6 @@ mail/
 oauth/
 api-gateway/
 api-monitor/
+auto-script/
 service@template/
 service-portal-manager/
