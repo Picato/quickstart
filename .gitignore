@@ -5,6 +5,7 @@ oauth/
 api-gateway/
 api-monitor/
 auto-script/
+dynamic/
 service@template/
 service-portal-manager/
 package-lock.json
