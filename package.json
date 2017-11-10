@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "preinstall": "npm install -g concurrently && npm install -g typescript && npm install -g cross-var && npm install -g rimraf && npm install -g tslint-config-standard",
+    "preinstall": "sudo npm install -g concurrently typescript cross-var rimraf tslint-config-standard",
     "all": "npm run clone && npm run install && npm run build",
     "clone": "npm run clone:dynamic && npm run clone:script && npm run clone:monitor && npm run clone:gateway && npm run clone:oauth && npm run clone:files && npm run clone:log && npm run clone:mail && npm run clone:web",
     "postinstall": "npm run install:dynamic && npm run install:script && npm run install:monitor && npm run install:gateway && npm run install:oauth && npm run install:files && npm run install:log && npm run install:mail && npm run install:web",
