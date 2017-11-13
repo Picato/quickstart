@@ -1,6 +1,6 @@
 import Type from './_.type'
 
-class StringType extends Type<string> {
+export class StringType extends Type<string> {
   constructor() {
     super('String', 'string')
   }

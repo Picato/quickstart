@@ -9,12 +9,13 @@
     "emitDecoratorMetadata": false,
     "experimentalDecorators": false,
     "outDir": ".build",
-    "rootDir": "src"
+    "rootDir": "."
   },
   "include": [
     "src"
   ],
   "exclude": [
+    "template",
     "src/test",
     "node_modules"
   ]

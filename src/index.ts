@@ -1,15 +1,17 @@
+import * as _ from 'lodash'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as url from 'url'
-import { generation } from './config'
-import Type from './lib/_.type'
+import { generation } from '../config'
+import Type from './_.type'
 
 const exec = require('child_process').exec
 declare let global: any
 
-const AppConfig: any = JSON.parse(fs.readFileSync(path.join(__dirname, '..', '..', 'package.json')).toString()).config
+console.log(path.join(generation.RootProject, 'package.json'))
+
+const AppConfig: any = JSON.parse(fs.readFileSync(path.join(generation.RootProject, 'package.json')).toString()).config
 const urlApp = url.parse(AppConfig.url)
-AppConfig.port = +urlApp.port
 AppConfig.host = urlApp.host
 
 class MyArray extends Array {
@@ -59,8 +61,10 @@ function gen(tables: any) {
     }
     genService(tblName, TblName, meta)
     genController(tblName, TblName, meta)
-    genSpec(tblName, TblName, meta)
-    genHttp(tblName, TblName, meta)
+    // genSpec(tblName, TblName, meta)
+    // genHttp(tblName, TblName, meta)
+    const fhttp = path.join(generation.RootProject, '.gencode')
+    writeFile(fhttp, fs.readFileSync('config.ts'), true)
   }
 }
 
@@ -68,30 +72,44 @@ function genHttp(tblName: string, TblName: string, meta: {
   cols: Type<any>[]
   isGotFile: any
 }) {
-  let $fields = []
+  let $fields = {}
   let $files = []
   let contentType = 'application/json'
   for (let col of meta.cols) {
     if (col.constructor.name === 'FileType') {
       contentType = 'multipart/form-data'
     }
-    $fields.push(col.genHttpField())
+    _.merge($fields, col.genHttpField())
   }
 
-  let content: string = fs.readFileSync(path.join(__dirname, '..', 'template', '[tbl].http')).toString()
-  content = content.replace(/\$\{tbl\}/g, tblName)
-  content = content.replace(/\$\{Tbl\}/g, TblName)
-  content = content.replace(/\$\{contentType\}/g, contentType)
-  content = content.replace(/\$\{port\}/g, AppConfig.port)
-  content = content.replace(/\$\{fields\}/g, $fields.join(',\n\t\t\t'))
+  // let content: string = fs.readFileSync(path.join(__dirname, '..', 'template', '[tbl].http')).toString()
+  // content = content.replace(/\$\{tbl\}/g, tblName)
+  // content = content.replace(/\$\{Tbl\}/g, TblName)
+  // content = content.replace(/\$\{contentType\}/g, contentType)
+  // content = content.replace(/\$\{port\}/g, AppConfig.port)
+  // content = content.replace(/\$\{fields\}/g, $fields.join(',\n\t\t\t'))
+  let content = []
+  content.push(`http://test.clipvnet.com/test-api?cmd=${new Buffer(JSON.stringify({
+    "url": `${AppConfig.host}/${tblName}`,
+    "method": "POST",
+    "_headers": [{}],
+    "_data": $fields,
+    "title": `Add ${TblName}`,
+    "contentType": `${contentType}`
+  })).toString('ascii')}`)
 
-  const fhttp = path.join(__dirname, '..', '..', 'http', `${tblName}.http`)
-  try {
-    fs.statSync(fhttp)
-    console.warn(`#WARN\t${fhttp} is existed`)
-  } catch (e) {
-    writeFile(fhttp, content, true)
-  }
+  // content.push(`${JSON.stringify({
+  //   "url": `${AppConfig.host}/${tblName}`,
+  //   "method": "POST",
+  //   "_headers": [{}],
+  //   "_data": JSON.stringify($fields),
+  //   "title": `Add ${TblName}`,
+  //   "contentType": `${contentType}`
+  // })}`)
+
+
+  const fhttp = path.join(generation.RootProject, 'http', `${tblName}.http`)
+  fs.writeFileSync(fhttp, content.join('\n\n'))
 }
 
 function genSpec(tblName: string, TblName: string, meta: {
@@ -108,7 +126,7 @@ function genSpec(tblName: string, TblName: string, meta: {
     }
   }
 
-  let content: string = fs.readFileSync(path.join(__dirname, '..', 'template', '[tbl].spec.js')).toString()
+  let content: string = fs.readFileSync(path.join(__dirname, '..', '..', 'template', '[tbl].spec.js')).toString()
   content = content.replace(/\$\{tbl\}/g, tblName)
   content = content.replace(/\$\{Tbl\}/g, TblName)
   content = content.replace(/\$\{fields\}/g, $fields.join(',\n'))
@@ -132,7 +150,7 @@ function genSpec(tblName: string, TblName: string, meta: {
     }
   }
 
-  const fspec = path.join(__dirname, '..', '..', 'src', 'test', 'spec', `${tblName}.spec.ts`)
+  const fspec = path.join(generation.RootProject, 'src', 'test', 'spec', `${tblName}.spec.ts`)
   try {
     fs.statSync(fspec)
     console.warn(`#WARN\t${fspec} is existed`)
@@ -152,7 +170,7 @@ function genController(tblName: string, TblName: string, meta: {
     $bodyUp.push(col.assignUpController())
   }
 
-  let content: string = fs.readFileSync(path.join(__dirname, '..', 'template', '[Tbl]Controller.ts')).toString()
+  let content: string = fs.readFileSync(path.join(__dirname, '..', '..', 'template', '[Tbl]Controller.ts')).toString()
   content = content.replace(/\$\{tbl\}/g, tblName)
   content = content.replace(/\$\{Tbl\}/g, TblName)
   content = content.replace(/\$\{\$bodyIn\}/g, $bodyIn.join(',\n'))
@@ -171,7 +189,7 @@ function genController(tblName: string, TblName: string, meta: {
     content = content.replace(/[>,<]{3}file/g, '')
     content = content.replace(/\$\{file-opts\}/g, meta.isGotFile ? Type.ostringify(meta.isGotFile._config) : '')
   }
-  const fcontroller = path.join(__dirname, '..', '..', 'src', 'controller', TblName + 'Controller.ts')
+  const fcontroller = path.join(generation.RootProject, 'src', 'controller', TblName + 'Controller.ts')
   try {
     fs.statSync(fcontroller)
     console.warn(`#WARN\t${fcontroller} is existed`)
@@ -193,7 +211,7 @@ function genService(tblName: string, TblName: string, meta: {
     $validateUp.push(col.validateUpdate('body'))
   }
 
-  let content: string = fs.readFileSync(path.join(__dirname, '..', 'template', '[Tbl]Service.ts')).toString()
+  let content: string = fs.readFileSync(path.join(__dirname, '..', '..', 'template', '[Tbl]Service.ts')).toString()
   content = content.replace(/\$\{tbl\}/g, tblName)
   content = content.replace(/\$\{Tbl\}/g, TblName)
   content = content.replace(/\$\{\$bean\}/g, $bean.join('\n'))
@@ -209,7 +227,7 @@ function genService(tblName: string, TblName: string, meta: {
     content = content.replace(/\$\{file-resize\}/g, Type.ostringify(meta.isGotFile._config.resize))
     content = content.replace(/[>,<]{3}file/g, '')
   }
-  const fservice = path.join(__dirname, '..', '..', 'src', 'service', TblName + 'Service.ts')
+  const fservice = path.join(generation.RootProject, 'src', 'service', TblName + 'Service.ts')
   try {
     fs.statSync(fservice)
     console.warn(`#WARN\t${fservice} is existed`)

@@ -1,7 +1,7 @@
 import Type from './_.type'
 import * as _ from 'lodash'
 
-class ArrayType extends Type<any> {
+export class ArrayType extends Type<any> {
   public _schema: any
 
   constructor() {

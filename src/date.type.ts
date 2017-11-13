@@ -1,6 +1,6 @@
 import Type from './_.type'
 
-class DateType extends Type<string | number> {
+export class DateType extends Type<string | number> {
 
   constructor() {
     super('Date')

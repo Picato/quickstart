@@ -1,6 +1,6 @@
 import Type from './_.type'
 
-class UuidType extends Type<string> {
+export class UuidType extends Type<string> {
 
   constructor() {
     super('Uuid', 'Uuid')

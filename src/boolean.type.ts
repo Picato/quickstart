@@ -1,6 +1,6 @@
 import Type from './_.type'
 
-class BooleanType extends Type<boolean> {
+export class BooleanType extends Type<boolean> {
   constructor() {
     super('Boolean', 'boolean')
   }

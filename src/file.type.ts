@@ -1,6 +1,6 @@
 import Type from './_.type'
 
-class FileType extends Type<any> {
+export class FileType extends Type<any> {
 
   public _config: any
   public gdataType
