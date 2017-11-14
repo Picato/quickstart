@@ -15,14 +15,12 @@
     "pull": "concurrently \"npm run pull:script\" \"npm run pull:dynamic\" \"npm run pull:monitor\" \"npm run pull:gateway\" \"npm run pull:oauth\" \"npm run pull:files\" \"npm run pull:log\" \"npm run pull:mail\" \"npm run pull:web\"",
     "update": "concurrently \"npm run update:script\" \"npm run update:dynamic\" \"npm run update:monitor\" \"npm run update:gateway\" \"npm run update:oauth\" \"npm run update:files\" \"npm run update:log\" \"npm run update:mail\"",
     "newservice": "cross-var git clone https://github.com/doanthuanthanh88/hinos-framework.git --single-branch -b service@template ",
-    
     "start:web": "cd service-portal-manager && npm run dev",
     "pull:web": "cd service-portal-manager && git pull",
     "clone:web": "git clone https://github.com/doanthuanthanh88/vue-framework.git --single-branch -b service@portal service-portal-manager",
     "install:web": "cd service-portal-manager && npm install",
     "build:web": "cd service-portal-manager && npm run build",
     "pm2:web": "cd service-portal-manager && npm run pm2",
-    
     "start:dynamic": "cd dynamic && npm start",
     "update:dynamic": "cd dynamic && npm update --save",
     "pull:dynamic": "cd dynamic && git pull",
@@ -30,7 +28,6 @@
     "install:dynamic": "cd dynamic && npm install",
     "build:dynamic": "cd dynamic && npm run build",
     "pm2:dynamic": "cd dynamic && npm run pm2",
-    
     "start:gateway": "cd api-gateway && npm start",
     "update:gateway": "cd api-gateway && npm update --save",
     "pull:gateway": "cd api-gateway && git pull",
@@ -38,7 +35,6 @@
     "install:gateway": "cd api-gateway && npm install",
     "build:gateway": "cd api-gateway && npm run build",
     "pm2:gateway": "cd api-gateway && npm run pm2",
-    
     "start:monitor": "cd api-monitor && npm start",
     "update:monitor": "cd api-monitor && npm update --save",
     "pull:monitor": "cd api-monitor && git pull",
@@ -46,7 +42,6 @@
     "install:monitor": "cd api-monitor && npm install",
     "build:monitor": "cd api-monitor && npm run build",
     "pm2:monitor": "cd api-monitor && npm run pm2",
-    
     "start:script": "cd auto-script && npm start",
     "update:script": "cd auto-script && npm update --save",
     "pull:script": "cd auto-script && git pull",
@@ -54,7 +49,6 @@
     "install:script": "cd auto-script && npm install",
     "build:script": "cd auto-script && npm run build",
     "pm2:script": "cd auto-script && npm run pm2",
-    
     "start:oauth": "cd oauth && npm start",
     "update:oauth": "cd oauth && npm update --save",
     "pull:oauth": "cd oauth && git pull",
@@ -62,7 +56,6 @@
     "install:oauth": "cd oauth && npm install",
     "build:oauth": "cd oauth && npm run build",
     "pm2:oauth": "cd oauth && npm run pm2",
-    
     "start:files": "cd files && npm start",
     "update:files": "cd files && npm update --save",
     "pull:files": "cd files && git pull",
@@ -70,7 +63,6 @@
     "install:files": "cd files && npm install",
     "build:files": "cd files && npm run build",
     "pm2:files": "cd files && npm run pm2",
-    
     "start:log": "cd log && npm start",
     "update:log": "cd log && npm update --save",
     "pull:log": "cd log && git pull",
@@ -78,7 +70,6 @@
     "install:log": "cd log && npm install",
     "build:log": "cd log && npm run build",
     "pm2:log": "cd log && npm run pm2",
-    
     "start:mail": "cd mail && npm start",
     "update:mail": "cd mail && npm update --save",
     "pull:mail": "cd mail && git pull",
@@ -94,9 +85,9 @@
     "hinos-cors": "^1.0.1",
     "hinos-helmet": "^1.0.0",
     "hinos-mongo": "^1.1.7",
-    "hinos-redis": "^1.0.25",
+    "hinos-redis": "^1.0.26",
     "hinos-requesthasher": "^1.1.9",
-    "hinos-route": "^1.1.12",
+    "hinos-route": "^1.1.13",
     "hinos-serve": "^1.1.1",
     "hinos-socketio": "^2.0.8",
     "hinos-validation": "^1.1.2",
