@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "clone": "npm run clone:hinos && npm run clone:route && npm run clone:validation && npm run clone:serve && npm run clone:bodyparser && npm run clone:requestmatcher && npm run clone:mongo && npm run clone:socketio && npm run clone:redis && npm run clone:rabbitmq && npm run clone:cors && npm run clone:common && npm run clone:requesthasher",
-    "install": "npm run install:hinos && npm run install:route && npm run install:validation && npm run install:serve && npm run install:bodyparser && npm run install:requestmatcher && npm run install:mongo && npm run install:socketio && npm run install:redis && npm run install:rabbitmq && npm run install:cors && npm run install:common && npm run install:requesthasher",
+    "install": "npm install -g rimraf && npm run install:hinos && npm run install:route && npm run install:validation && npm run install:serve && npm run install:bodyparser && npm run install:requestmatcher && npm run install:mongo && npm run install:socketio && npm run install:redis && npm run install:rabbitmq && npm run install:cors && npm run install:common && npm run install:requesthasher",
     "build": "npm run build:hinos && npm run build:route && npm run build:validation && npm run build:serve && npm run build:bodyparser && npm run build:requestmatcher && npm run build:mongo && npm run build:socketio && npm run build:redis && npm run build:rabbitmq && npm run build:cors && npm run build:common && npm run build:requesthasher",
     "update": "npm run update:hinos && npm run update:route && npm run update:validation && npm run update:serve && npm run update:bodyparser && npm run update:requestmatcher && npm run update:mongo && npm run update:socketio && npm run update:redis && npm run update:rabbitmq && npm run update:cors && npm run update:common && npm run update:requesthasher",
     "commit": "npm run commit:hinos && npm run commit:route && npm run commit:validation && npm run commit:serve && npm run commit:bodyparser && npm run commit:requestmatcher && npm run commit:mongo && npm run commit:socketio && npm run commit:redis && npm run commit:rabbitmq && npm run commit:cors && npm run commit:common && npm run commit:requesthasher",
     "publish": "npm run publish:hinos && npm run publish:route && npm run publish:validation && npm run publish:serve && npm run publish:bodyparser && npm run publish:requestmatcher && npm run publish:mongo && npm run publish:socketio && npm run publish:redis && npm run publish:rabbitmq && npm run publish:cors && npm run publish:common && npm run publish:requesthasher",
-
     "publish:hinos": "cd hinos && npm publish",
     "publish:route": "cd hinos-route && npm publish",
     "publish:validation": "cd hinos-validation && npm publish",
@@ -24,7 +23,6 @@
     "publish:cors": "cd hinos-cors && npm publish",
     "publish:common": "cd hinos-common && npm publish",
     "publish:requesthasher": "cd hinos-requesthasher && npm publish",
-
     "commit:hinos": "cd hinos && git add . && git pull && git commit -m \"Update lastest libs\" && git push",
     "commit:route": "cd hinos-route && git add . && git pull && git commit -m \"Update lastest libs\" && git push",
     "commit:validation": "cd hinos-validation && git add . && git pull && git commit -m \"Update lastest libs\" && git push",
@@ -38,7 +36,6 @@
     "commit:cors": "cd hinos-cors && git add . && git pull && git commit -m \"Update lastest libs\" && git push",
     "commit:common": "cd hinos-common && git add . && git pull && git commit -m \"Update lastest libs\" && git push",
     "commit:requesthasher": "cd hinos-requesthasher && git add . && git pull && git commit -m \"Update lastest libs\" && git push",
-
     "update:hinos": "cd hinos && npm update --save",
     "update:route": "cd hinos-route && npm update --save",
     "update:validation": "cd hinos-validation && npm update --save",
@@ -52,7 +49,6 @@
     "update:cors": "cd hinos-cors && npm update --save",
     "update:common": "cd hinos-common && npm update --save",
     "update:requesthasher": "cd hinos-requesthasher && npm update --save",
-
     "build:hinos": "cd hinos && npm run build",
     "build:route": "cd hinos-route && npm run build",
     "build:validation": "cd hinos-validation && npm run build",
@@ -66,7 +62,6 @@
     "build:cors": "cd hinos-cors && npm run build",
     "build:common": "cd hinos-common && npm run build",
     "build:requesthasher": "cd hinos-requesthasher && npm run build",
-
     "install:hinos": "cd hinos && npm install",
     "install:route": "cd hinos-route && npm install",
     "install:validation": "cd hinos-validation && npm install",
@@ -80,7 +75,6 @@
     "install:cors": "cd hinos-cors && npm install",
     "install:common": "cd hinos-common && npm install",
     "install:requesthasher": "cd hinos-requesthasher && npm install",
-
     "clone:hinos": "git clone https://github.com/doanthuanthanh88/hinos.git",
     "clone:route": "git clone https://github.com/doanthuanthanh88/hinos-route.git",
     "clone:validation": "git clone https://github.com/doanthuanthanh88/hinos-validation.git",
