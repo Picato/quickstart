@@ -83,7 +83,7 @@
     "axios": "^0.16.2",
     "hinos": "^1.1.6",
     "hinos-bodyparser": "^2.1.5",
-    "hinos-common": "^2.0.6",
+    "hinos-common": "^2.0.7",
     "hinos-cors": "^1.0.2",
     "hinos-helmet": "^1.0.0",
     "hinos-mongo": "^1.1.10",
