@@ -1,7 +1,7 @@
-nohup ../oauth/.build/index.js & > ../log.txt
-nohup ../files/.build/index.js & > ../log.txt
-nohup ../mail/.build/index.js & > ../log.txt
-nohup ../log/.build/index.js & > ../log.txt
-nohup ../dynamic/.build/index.js & > ../log.txt
-nohup ../auto-script/.build/index.js & > ../log.txt
-nohup ../api-monitor/.build/index.js & > ../log.txt
+nohup node ../oauth/.build/index.js & > ../log.txt
+nohup node ../files/.build/index.js & > ../log.txt
+nohup node ../mail/.build/index.js & > ../log.txt
+nohup node ../log/.build/index.js & > ../log.txt
+nohup node ../dynamic/.build/index.js & > ../log.txt
+nohup node ../auto-script/.build/index.js & > ../log.txt
+nohup node ../api-monitor/.build/index.js & > ../log.txt
