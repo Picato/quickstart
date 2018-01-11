@@ -1,15 +1,15 @@
 cd oauth
-nohup node . > log.txt &
+nohup node ../oauth > log.txt &
 cd ../files
-nohup node . > log.txt &
+nohup node ../files > log.txt &
 cd ../mail
-nohup node . > log.txt &
+nohup node ../mail > log.txt &
 cd ../log
-nohup node . > log.txt &
+nohup node ../log > log.txt &
 cd ../dynamic
-nohup node . > log.txt &
+nohup node ../dynamic > log.txt &
 cd ../auto-script
-nohup node . > log.txt &
+nohup node ../auto-script > log.txt &
 cd ../api-monitor
-nohup node . > log.txt &
+nohup node ../api-monitor > log.txt &
 
