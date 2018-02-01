@@ -1,0 +1,54 @@
+{
+  "mongo": {
+    "url": "mongodb://localhost:27017/",
+    "releaseTimeout": 1000
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "releaseTimeout": 1000
+  },
+  "encrypt": {
+    "pwd": ")^!!!(**",
+    "mode": [
+      "query",
+      "body",
+      "response"
+    ],
+    "baseOnRequest": true
+  },
+  "services": {
+    "gateway": "http://127.0.0.1:6110",
+    "oauth": "http://127.0.0.1:6111",
+    "authoriz": "http://127.0.0.1:6111",
+    "files": "http://127.0.0.1:6112",
+    "mail": "http://127.0.0.1:6113",
+    "log": "http://127.0.0.1:6114",
+    "monitor": "http://127.0.0.1:6115",
+    "script": "http://127.0.0.1:6116",
+    "dynamic": "http://127.0.0.1:6117",
+    "webPortal": "http://127.0.0.1:8080"
+  },
+  "oauth": {
+    "app": {
+      "suid": "123456789"
+    }
+  },
+  "dashboard": {
+    "app": {
+      "suid": "123456789"
+    },
+    "services": {
+      "gateway": "http://127.0.0.1:6110",
+      "oauth": "http://127.0.0.1:6111",
+      "authoriz": "http://127.0.0.1:6111",
+      "files": "http://127.0.0.1:6112",
+      "mail": "http://127.0.0.1:6113",
+      "log": "http://127.0.0.1:6114",
+      "monitor": "http://127.0.0.1:6115",
+      "script": "http://127.0.0.1:6116",
+      "dynamic": "http://127.0.0.1:6117",
+      "webPortal": "http://127.0.0.1:8080"
+    }
+  }
+}
