@@ -6,6 +6,7 @@
   "redis": {
     "host": "localhost",
     "port": 6379,
+    "db": 0,
     "releaseTimeout": 1000
   },
   "encrypt": {
@@ -30,6 +31,16 @@
     "webPortal": "http://127.0.0.1:8080"
   },
   "oauth": {
+    "app": {
+      "suid": "123456789"
+    }
+  },
+  "mail": {},
+  "files": {},
+  "log": {},
+  "script": {},
+  "monitor": {},
+  "gateway": {
     "app": {
       "suid": "123456789"
     }
