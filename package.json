@@ -9,7 +9,7 @@
     "all": "npm run clone && npm install && npm run build",
     "clone": "concurrently \"npm run clone:dynamic\" \"npm run clone:script\" \"npm run clone:monitor\" \"npm run clone:gateway\" \"npm run clone:oauth\" \"npm run clone:files\" \"npm run clone:log\" \"npm run clone:mail\" \"npm run clone:web\"",
     "postinstall": "npm run install:dynamic && npm run install:script && npm run install:monitor && npm run install:gateway && npm run install:oauth && npm run install:files && npm run install:log && npm run install:mail && npm run install:web",
-    "build:services": "concurrently \"npm run build:oauth\" \"npm run build:files\" \"npm run build:mail\" \"npm run build:log\" \"npm run build:script\" \"npm run build:dynamic\" \"npm run build:monitor\" \"npm run build:gateway\"",
+    "build:services": "npm run build:oauth && npm run build:files && npm run build:mail && npm run build:log && npm run build:script && npm run build:dynamic",
     "build": "npm run build:services && npm run build:web",
     "start": "concurrently \"npm run start:oauth\" \"npm run start:files\" \"npm run start:mail\" \"npm run start:log\" \"npm run start:script\" \"npm run start:dynamic\" \"npm run start:monitor\" \"npm run start:gateway\"",
     "pm2": "npm run pm2:oauth && npm run pm2:files && npm run pm2:mail && npm run pm2:log && npm run pm2:script && npm run pm2:dynamic && npm run pm2:monitor && npm run pm2:gateway && npm run pm2:web",
