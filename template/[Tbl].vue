@@ -21,28 +21,7 @@
     <template slot="main">
       <TableComponent>
         <template slot="pagination" v-if="list">
-          <a class="pagination-previous" title="This is the first page" @click="page <= 1 ? null : fetchData(page - 1)" :disabled="page <= 1">Previous</a>
-          <a class="pagination-next" @click="list.length < recordsPerPage ? null : fetchData(page + 1)" :disabled="list.length < recordsPerPage">Next page</a>
-          <ul class="pagination-list">
-            <li>
-              <div class="field has-addons">
-                <p class="control">
-                  <a class="button is-static">
-                    Page {{page}}
-                  </a>
-                </p>
-                <p class="control">
-                  <span class="select">
-                    <select v-model="recordsPerPage" @change="fetchData(1)">
-                      <option :value="20">Show 20 records</option>
-                      <option :value="50">Show 50 records</option>
-                      <option :value="100">Show 100 records</option>
-                    </select>
-                  </span>
-                </p>
-              </div>
-            </li>
-          </ul>
+          <PaginationComponent :page="page" :recordsPerPage="[20, 50, 100]" :length="list.length" @change="fetchData"></PaginationComponent>
         </template>
         <template slot="head">
           <tr>
@@ -93,13 +72,13 @@ ${$contentTable}
 import _ from 'lodash'
 import { $find, $show, $date } from '@/filters/Core'
 import Page from '@/components/template/Page'
-import PopupComponent from '@/components/common/Popup.component'
-import TableComponent from '@/components/common/Table.component'
-import ConfirmComponent from '@/components/common/Confirm.component'
+import PopupComponent from '@/components/common/Popup'
+import TableComponent from '@/components/common/Table'
+import ConfirmComponent from '@/components/common/Confirm'
 import ${Tbl}Provider from '@/providers/${Tbl}Provider'${$referImport}
 
 export default {
-  name: 'list',
+  name: '${Tbl}Component',
   filters: { $find, $show, $date },
   components: { PopupComponent, ConfirmComponent, Page, TableComponent },
   data() {
@@ -115,12 +94,18 @@ export default {
       return typeof this.item === 'object' ? 1 : (typeof this.item === 'string' ? -1 : 0)
     }
   },
+  watch: {
+    $route({ name }) {
+      if (name === '${Tbl}') this.fetchData()
+    }
+  },
   mounted() {
     ${$referInit}this.fetchData(1)
   },
   methods: {
-    async fetchData(page = 1) {
-      this.page = page
+    async fetchData({ page, recordsPerPage } = {}) {
+      if (page) this.page = page
+      if (recordsPerPage) this.recordsPerPage = recordsPerPage
       this.list = await ${Tbl}Provider.find(undefined, { page: this.page, recordsPerPage: this.recordsPerPage })
     },
     openUpdate(item = ${$dfValue}) {
