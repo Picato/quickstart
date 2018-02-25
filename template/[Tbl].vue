@@ -74,13 +74,14 @@ import { $find, $show, $date } from '@/filters/Core'
 import Page from '@/components/template/Page'
 import PopupComponent from '@/components/common/Popup'
 import TableComponent from '@/components/common/Table'
+import PaginationComponent from '@/components/common/Pagination'
 import ConfirmComponent from '@/components/common/Confirm'
 import ${Tbl}Provider from '@/providers/${Tbl}Provider'${$referImport}
 
 export default {
   name: '${Tbl}Component',
   filters: { $find, $show, $date },
-  components: { PopupComponent, ConfirmComponent, Page, TableComponent },
+  components: { PopupComponent, ConfirmComponent, Page, TableComponent, PaginationComponent },
   data() {
     return {
       page: 1,
