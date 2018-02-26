@@ -56,5 +56,6 @@ class DateType extends type<string | number> {
   }
 
 }
-const date = DateType;
-export default date;
+export default function () {
+  return new DateType()
+}

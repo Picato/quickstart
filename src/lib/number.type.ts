@@ -47,5 +47,7 @@ class NumberType extends type<number> {
     })
   }
 }
-const number = NumberType;
-export default number;
+
+export default function () {
+  return new NumberType()
+}

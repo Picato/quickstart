@@ -111,7 +111,7 @@ function genGUI(tblName: string, TblName: string, meta: {
   let content: string = fs.readFileSync(path.join(__dirname, '..', 'template', '[Tbl].vue')).toString()
   content = content.replace(/\$\{tbl\}/g, tblName)
   content = content.replace(/\$\{Tbl\}/g, TblName)
-  content = content.replace(/\$\{\$dfValue\}/g, type.ostringify($dfValue).replace(/"/g, "'"))
+  content = content.replace(/\$\{\$dfValue\}/g, type.ostringify($dfValue, null, ' ').replace(/"/g, "'"))
   content = content.replace(/\$\{\$form\}/g, $form.join('\n'))
   content = content.replace(/\$\{\$referImport\}/g, $referImport.join('\n'))
   content = content.replace(/\$\{\$referData\}/g, $referData.join(',\n'))

@@ -34,5 +34,7 @@ class BooleanType extends type<boolean> {
   }
 
 }
-const boolean = BooleanType;
-export default boolean;
+
+export default function () {
+  return new BooleanType()
+}

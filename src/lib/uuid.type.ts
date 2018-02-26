@@ -44,5 +44,7 @@ class UuidType extends type<string> {
   }
 
 }
-const uuid = UuidType;
-export default uuid;
+
+export default function () {
+  return new UuidType()
+}

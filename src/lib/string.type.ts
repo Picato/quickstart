@@ -51,5 +51,7 @@ class StringType extends type<string> {
     });
   }
 }
-const string = StringType;
-export default string;
+
+export default function () {
+  return new StringType()
+}

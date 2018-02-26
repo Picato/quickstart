@@ -2,7 +2,7 @@ import axios from 'axios'
 import AppConfig from '@/AppConfig'
 
 export default {
-  url: AppConfig.url,
+  url: AppConfig.services.api,
   async find(where, opts = { page: 1, recordsPerPage: 20 }) {
     const rs = await axios.get(`${this.url}/${tbl}`, {
       params: opts
