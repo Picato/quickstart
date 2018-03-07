@@ -12,8 +12,8 @@ import { authoriz } from '../service/Authoriz'<<<auth
 
 export class ${Tbl}Controller {
 
-	@GET('/${tbl}') >>>auth
-	@INJECT(authoriz(`${AppConfig.path}/${tbl}`, 'FIND')) <<<auth
+	@GET('/${Tbl}') >>>auth
+	@INJECT(authoriz(`${AppConfig.path}/${Tbl}`, 'FIND')) <<<auth
 	@RESTRICT({
     query: {
       page: Number,
@@ -30,8 +30,8 @@ export class ${Tbl}Controller {
 		return rs
 	}
 
-	@GET('/${tbl}/:_id') >>>auth
-	@INJECT(authoriz(`${AppConfig.path}/${tbl}`, 'GET'))<<<auth
+	@GET('/${Tbl}/:_id') >>>auth
+	@INJECT(authoriz(`${AppConfig.path}/${Tbl}`, 'GET'))<<<auth
 	@RESTRICT({
 		params: {
 			_id: Mongo.uuid
@@ -42,8 +42,8 @@ export class ${Tbl}Controller {
 		return rs
 	}
 
-	@POST('/${tbl}')>>>auth
-	@INJECT(authoriz(`${AppConfig.path}/${tbl}`, 'INSERT'))<<<auth >>>normal
+	@POST('/${Tbl}')>>>auth
+	@INJECT(authoriz(`${AppConfig.path}/${Tbl}`, 'INSERT'))<<<auth >>>normal
 	@BODYPARSER()<<<normal >>>file
 	@FILEPARSER(${file-opts})<<<file
 	@RESTRICT({
@@ -56,8 +56,8 @@ export class ${Tbl}Controller {
 		return rs
 	}
 
-	@PUT('/${tbl}/:_id')>>>auth
-	@INJECT(authoriz(`${AppConfig.path}/${tbl}`, 'UPDATE'))<<<auth >>>normal
+	@PUT('/${Tbl}/:_id')>>>auth
+	@INJECT(authoriz(`${AppConfig.path}/${Tbl}`, 'UPDATE'))<<<auth >>>normal
 	@BODYPARSER()<<<normal >>>file
 	@FILEPARSER(${file-opts})<<<file
 	@RESTRICT({
@@ -73,8 +73,8 @@ export class ${Tbl}Controller {
 		await ${Tbl}Service.update(body)
 	}
 
-	@DELETE('/${tbl}/:_id') >>>auth
-	@INJECT(authoriz(`${AppConfig.path}/${tbl}`, 'DELETE'))<<<auth
+	@DELETE('/${Tbl}/:_id') >>>auth
+	@INJECT(authoriz(`${AppConfig.path}/${Tbl}`, 'DELETE'))<<<auth
 	@RESTRICT({
 		params: {
 			_id: Mongo.uuid
