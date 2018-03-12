@@ -75,13 +75,13 @@ import Page from '@/components/template/Page'
 import PopupComponent from '@/components/common/Popup'
 import TableComponent from '@/components/common/Table'
 import PaginationComponent from '@/components/common/Pagination'
-import ConfirmComponent from '@/components/common/Confirm'
-import ${Tbl}Provider from '@/providers/${Tbl}Provider'${$referImport}
+import ConfirmComponent from '@/components/common/Confirm'${$referImport}
 
 export default {
   name: '${Tbl}Component',
   filters: { $find, $show, $date },
   components: { PopupComponent, ConfirmComponent, Page, TableComponent, PaginationComponent },
+  providers: ['${Tbl}'],
   data() {
     return {
       page: 1,
@@ -107,7 +107,7 @@ export default {
     async fetchData({ page, recordsPerPage } = {}) {
       if (page) this.page = page
       if (recordsPerPage) this.recordsPerPage = recordsPerPage
-      this.list = await ${Tbl}Provider.find(undefined, { page: this.page, recordsPerPage: this.recordsPerPage })
+      this.list = await this.providers.${Tbl}.find(undefined, { page: this.page, recordsPerPage: this.recordsPerPage })
     },
     openUpdate(item = ${$dfValue}) {
       this.item = _.cloneDeep(item)
@@ -120,18 +120,18 @@ export default {
       const isValid = await this.$validator.validateAll()
       if (isValid) {
         if (!this.item._id) {
-          await ${Tbl}Provider.insert(this.item)
+          await this.providers.${Tbl}.insert(this.item)
           await this.fetchData()
           this.closeUpdate('Added')
         } else {
-          await ${Tbl}Provider.update(this.item)
+          await this.providers.${Tbl}.update(this.item)
           await this.fetchData()
           this.closeUpdate('Updated')
         }
       }
     },
     async remove() {
-      await ${Tbl}Provider.delete(this.item)
+      await this.providers.${Tbl}.delete(this.item)
       await this.fetchData()
       this.closeUpdate('Deleted')
     }

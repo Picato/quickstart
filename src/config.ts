@@ -21,6 +21,7 @@ export namespace generation {
       file: file(),
       group: string()
     }
+  }
   // Project: {
   //     _id: key,
   //     name: string,
