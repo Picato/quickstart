@@ -1,3 +1,4 @@
+import './config'
 import * as _ from 'lodash'
 import * as fs from 'fs'
 import * as path from 'path'
@@ -8,11 +9,7 @@ import Type from './_.type'
 const exec = require('child_process').exec
 declare let global: any
 
-console.log(path.join(generation.RootProject, 'package.json'))
-
-const AppConfig: any = JSON.parse(fs.readFileSync(path.join(generation.RootProject, 'package.json')).toString()).config
-const urlApp = url.parse(AppConfig.url)
-AppConfig.host = urlApp.host
+const AppConfig = global.AppConfig
 
 class MyArray extends Array {
   push(data: any) {
