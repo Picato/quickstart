@@ -134,7 +134,7 @@ function genGUIProvider(tblName: string, TblName: string, meta: {
   let content: string = fs.readFileSync(path.join(__dirname, '..', 'template', '[Tbl]Provider.js')).toString()
   content = content.replace(/\$\{tbl\}/g, tblName)
   content = content.replace(/\$\{Tbl\}/g, TblName)
-  const fguipro = path.join(__dirname, '..', '..', 'src', 'providers', TblName + 'Provider.js')
+  const fguipro = path.join(__dirname, '..', '..', 'src', 'providers', TblName + '.js')
   try {
     fs.statSync(fguipro)
     console.warn(`#WARN\t${fguipro} is existed`)

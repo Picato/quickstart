@@ -4,7 +4,8 @@
   "description": "Gen code for vue-framework",
   "main": "dist",
   "scripts": {
-    "start": "tsc && node dist"
+    "start": "tsc && node dist",
+    "new": "node dist/new"
   },
   "dependencies": {
     "@types/lodash": "^4.14.64",
