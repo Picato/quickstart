@@ -49,7 +49,7 @@ export default {
   if (rootFolder === 'base') {
     const fgui = path.join(__dirname, '..', '..', 'src', 'components', rootFolder, TblName + '.vue')
     genFile(fgui, `<template>
-
+  <code>${TblName}</code>
 </template>
 
 <script>
@@ -66,7 +66,7 @@ export default {
   } else if (rootFolder === 'app') {
     const fgui = path.join(__dirname, '..', '..', 'src', 'components', rootFolder, TblName + '.vue')
     genFile(fgui, `<template>
-
+  <code>${TblName}</code>
 </template>
 
 <script>
