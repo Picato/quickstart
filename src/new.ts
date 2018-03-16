@@ -32,6 +32,20 @@ function gen(rootFolder, TblName) {
     }
   }
 
+  const updateCom = () => {
+    const files = fs.readdirSync(path.join(__dirname, '..', '..', 'src', 'components', rootFolder)).filter(e => e.endsWith('.vue')).map(e => e.split('.')[0])
+    if (rootFolder === 'base') {
+      let content = []
+      content = content.concat(files.map(e => `import ${e} from './${e}'`))
+      content.push(`
+export default {
+  ${files.map(e => `B${e}: ${e}`).join(',\n  ')}
+}
+`)
+      fs.writeFileSync(path.join(__dirname, '..', '..', 'src', 'components', rootFolder, 'index.js'), content.join('\n'))
+    }
+  }
+
   if (rootFolder === 'base') {
     const fgui = path.join(__dirname, '..', '..', 'src', 'components', rootFolder, TblName + '.vue')
     genFile(fgui, `<template>
@@ -48,6 +62,7 @@ export default {
 
 </style>
 `)
+    updateCom()
   } else if (rootFolder === 'app') {
     const fgui = path.join(__dirname, '..', '..', 'src', 'components', rootFolder, TblName + '.vue')
     genFile(fgui, `<template>
