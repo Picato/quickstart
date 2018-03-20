@@ -9,7 +9,12 @@ Set ```NODE_ENV=production``` when run production
     ```
     npm install -g concurrently typescript rimraf
     ```
-   
+
+* Install Redis server
+   ```
+   sudo apt install redis-server
+   ```
+
 # Installation
 * Run all (clone, install, build)
     ```sh
