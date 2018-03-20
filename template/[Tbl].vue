@@ -5,13 +5,13 @@
         <template slot="body" v-if="action === 1">${$form}
         </template>
         <template slot="footer" v-if="item">
-          <a class="button is-primary" @click="saveItem()" ref="submit">>
+          <a class="button is-primary" @click="saveItem()" ref="submit">
             <span class="icon">
               <i class="fa fa-floppy-o"></i>
             </span>
             <span>Save changes</span>
           </a>
-          <a class="button is-text" @click="close()">
+          <a class="button is-text" @click="close()" ref="close">
             <i class="fa fa-times"></i>&nbsp;Cancel
           </a>
         </template>
