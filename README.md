@@ -4,12 +4,12 @@ Project include all microservice (oauth, files, mail, log...)
 # Setup
 Set ```NODE_ENV=production``` when run production
 
-# Pre-installation
-* Install concurrently
+# Pre-Installation
+* Install concurrently, tsc, rimraf
     ```
-    npm install -g concurrently
+    npm install -g concurrently typescript rimraf
     ```
-    
+   
 # Installation
 * Run all (clone, install, build)
     ```sh
