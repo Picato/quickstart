@@ -1,18 +1,17 @@
 <template>
   <Page title="${Tbl} management" subtitle="Manage ${tbl} in project">
     <template slot="others">
-      <ConfirmComponent :show="action === -1" title="Do you want to delete it ?" @yes="remove()" @no="item=undefined"></ConfirmComponent>
       <PopupComponent title="${Tbl} Form" :show="action === 1">
         <template slot="body" v-if="action === 1">${$form}
         </template>
         <template slot="footer" v-if="item">
-          <a class="button is-primary" @click="save()">
+          <a class="button is-primary" @click="saveItem()" ref="submit">>
             <span class="icon">
               <i class="fa fa-floppy-o"></i>
             </span>
             <span>Save changes</span>
           </a>
-          <a class="button is-text" @click="closeUpdate()">
+          <a class="button is-text" @click="close()">
             <i class="fa fa-times"></i>&nbsp;Cancel
           </a>
         </template>
@@ -28,7 +27,7 @@
             <th width="1">#</th>
 ${$titleTable}
             <th width="1">
-              <a class="button is-primary is-small" v-on:click="openUpdate()">
+              <a class="button is-primary is-small" v-on:click="editItem()">
                 <span class="icon is-small">
                   <i class="fa fa-plus-square-o"></i>
                 </span>
@@ -44,7 +43,7 @@ ${$contentTable}
             <td>
               <div class="field has-addons">
                 <p class="control">
-                  <a class="button is-small is-info" @click="openUpdate(e)">
+                  <a class="button is-small is-info" @click="editItem(e)">
                     <span class="icon is-small">
                       <i class="fa fa-pencil-square-o"></i>
                     </span>
@@ -52,7 +51,7 @@ ${$contentTable}
                   </a>
                 </p>
                 <p class="control">
-                  <a class="button is-small is-dark" @click="item=e._id">
+                  <a class="button is-small is-dark" @click="removeItem(e._id)">
                     <span class="icon is-small">
                       <i class="fa fa-trash-o"></i>
                     </span>
@@ -74,13 +73,12 @@ import { $find, $show, $date } from '@/filters/Core'
 import Page from '@/components/template/Page'
 import PopupComponent from '@/components/common/Popup'
 import TableComponent from '@/components/common/Table'
-import PaginationComponent from '@/components/common/Pagination'
-import ConfirmComponent from '@/components/common/Confirm'${$referImport}
+import PaginationComponent from '@/components/common/Pagination'${$referImport}
 
 export default {
   name: '${Tbl}Component',
   filters: { $find, $show, $date },
-  components: { PopupComponent, ConfirmComponent, Page, TableComponent, PaginationComponent },
+  components: { PopupComponent, Page, TableComponent, PaginationComponent },
   providers: ['${Tbl}'],
   data() {
     return {
@@ -88,11 +86,6 @@ export default {
       recordsPerPage: 20,
       item: undefined,
       list: undefined${$referData}
-    }
-  },
-  computed: {
-    action() {
-      return typeof this.item === 'object' ? 1 : (typeof this.item === 'string' ? -1 : 0)
     }
   },
   watch: {
@@ -109,31 +102,33 @@ export default {
       if (recordsPerPage) this.recordsPerPage = recordsPerPage
       this.list = await this.providers.${Tbl}.find(undefined, { page: this.page, recordsPerPage: this.recordsPerPage })
     },
-    openUpdate(item = ${$dfValue}) {
+    editItem(item = ${$dfValue}) {
       this.item = _.cloneDeep(item)
     },
-    closeUpdate(type) {
+    close(type) {
       this.item = undefined
       if (type) this.$pub('msg', { type: 1, msg: `${type} successfully` })
     },
-    async save() {
+    async saveItem() {
       const isValid = await this.$validator.validateAll()
       if (isValid) {
         if (!this.item._id) {
           await this.providers.${Tbl}.insert(this.item)
           await this.fetchData()
-          this.closeUpdate('Added')
+          this.close('Added')
         } else {
           await this.providers.${Tbl}.update(this.item)
           await this.fetchData()
-          this.closeUpdate('Updated')
+          this.close('Updated')
         }
       }
     },
-    async remove() {
-      await this.providers.${Tbl}.delete(this.item)
-      await this.fetchData()
-      this.closeUpdate('Deleted')
+    async removeItem(id) {
+      if (window.confirm('Are you sure to remove it ?')) {
+        await this.providers.${Tbl}.delete(id)
+        await this.fetchData()
+        this.close('Deleted')
+      }
     }
   }
 }
