@@ -4,6 +4,12 @@ Project include all microservice (oauth, files, mail, log...)
 # Setup
 Set ```NODE_ENV=production``` when run production
 
+# Pre-installation
+* Install concurrently
+    ```
+    npm install -g concurrently
+    ```
+    
 # Installation
 * Run all (clone, install, build)
     ```sh
